@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2025-11-04T06:00:00.000Z" agent="python_user_visible" etag="12345" version="20.0.0" type="device">
+  <diagram id="diagram1" name="Indirect Prompt Injection Flow">
+    <mxGraphModel dx="1128" dy="732" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        
+        <!-- Layer content: boxes and connectors -->
+        <!-- Start -->
+        <mxCell id="start" value="Start / Epic kickoff" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="160" height="60" as="geometry"/>
+        </mxCell>
+        
+        <!-- Threat Model -->
+        <mxCell id="threat" value="Threat Model
+(map retrieval vectors & parsers)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="260" y="40" width="200" height="80" as="geometry"/>
+        </mxCell>
+        
+        <!-- Attack Library -->
+        <mxCell id="attacklib" value="Attack Payload Library
+(templates & obfuscators)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="520" y="40" width="200" height="80" as="geometry"/>
+        </mxCell>
+        
+        <!-- Simulation vs Automated Branch -->
+        <mxCell id="branch" value="Decide: Simulation-first
+or Controlled Automated?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="760" y="40" width="180" height="80" as="geometry"/>
+        </mxCell>
+        
+        <!-- Simulation path -->
+        <mxCell id="sim_server" value="Mock Content Server
+(HTTP, PDF, Images)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="960" y="10" width="220" height="70" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="vector_seeder" value="Vector DB Seeder
+(seed poisoned docs)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="960" y="100" width="220" height="70" as="geometry"/>
+        </mxCell>
+        
+        <!-- Automated controlled path -->
+        <mxCell id="controlled_pub" value="Controlled Publisher
+(owned domain / S3 / inbox)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="960" y="200" width="220" height="70" as="geometry"/>
+        </mxCell>
+        
+        <!-- Agent Harness -->
+        <mxCell id="harness" value="Agent-Exercise Harness
+(hit retrieval flows)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="260" y="200" width="280" height="90" as="geometry"/>
+        </mxCell>
+        
+        <!-- Judge -->
+        <mxCell id="judge" value="Fortify Judge
+(classify & provide evidence)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F3E7;strokeColor=#2E7D32;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="560" y="220" width="220" height="90" as="geometry"/>
+        </mxCell>
+        
+        <!-- Reporting -->
+        <mxCell id="report" value="Reporting & Dashboard
+(ASR, VR, PoCs)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D98A00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="820" y="340" width="260" height="90" as="geometry"/>
+        </mxCell>
+        
+        <!-- CI -->
+        <mxCell id="ci" value="CI / Regression Tests
+(smoke tests + fuzzing)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F1FF;strokeColor=#3A6EA5;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="260" y="340" width="220" height="70" as="geometry"/>
+        </mxCell>
+        
+        <!-- Mitigations -->
+        <mxCell id="mitigate" value="Mitigations & Recommendations
+(provenance, sanitization, sandboxing)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F0F0;strokeColor=#999999;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="560" y="340" width="220" height="70" as="geometry"/>
+        </mxCell>
+        
+        <!-- Optional: Controlled Publisher result path to harness -->
+        <!-- Connectors (edges) -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;" edge="1" parent="1" source="start" target="threat">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;" edge="1" parent="1" source="threat" target="attacklib">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;" edge="1" parent="1" source="attacklib" target="branch">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Branch to Simulation -->
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;entryX=0.5;entryY=1;" edge="1" parent="1" source="branch" target="sim_server">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;" edge="1" parent="1" source="branch" target="controlled_pub">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Simulation to vector seeder -->
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;" edge="1" parent="1" source="sim_server" target="vector_seeder">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Controlled publisher to harness (optional path) -->
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;" edge="1" parent="1" source="controlled_pub" target="harness">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Vector seeder and sim feed to harness -->
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;" edge="1" parent="1" source="vector_seeder" target="harness">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;" edge="1" parent="1" source="sim_server" target="harness">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Harness to Judge -->
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;" edge="1" parent="1" source="harness" target="judge">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Judge to Reporting and Mitigations -->
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;" edge="1" parent="1" source="judge" target="report">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;" edge="1" parent="1" source="judge" target="mitigate">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- CI connection -->
+        <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="ci" target="harness">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="ci" target="attacklib">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Additional arrows to show flow back to CI for regression -->
+        <mxCell id="e15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;dashed=1;" edge="1" parent="1" source="report" target="ci">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
